@@ -32,11 +32,10 @@ export default class YearDropdownOptions extends React.Component {
   renderOptions = () => {
     var selectedYear = this.props.year
     var options = this.state.yearsList.map(year =>
-      <div className="react-datepicker__year-option"
+      <div className={`react-datepicker__year-option ${selectedYear === year ? "react-datepicker__year-option--selected" : ''}`}
           key={year}
           ref={year}
           onClick={this.onChange.bind(this, year)}>
-        {selectedYear === year ? <span className="react-datepicker__year-option--selected">✓</span> : ''}
         {year}
       </div>
     )
