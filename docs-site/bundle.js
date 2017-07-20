@@ -55632,15 +55632,10 @@
 	      var options = _this.state.yearsList.map(function (year) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'react-datepicker__year-option',
+	          { className: 'react-datepicker__year-option ' + (selectedYear === year ? "react-datepicker__year-option--selected" : ''),
 	            key: year,
 	            ref: year,
 	            onClick: _this.onChange.bind(_this, year) },
-	          selectedYear === year ? _react2.default.createElement(
-	            'span',
-	            { className: 'react-datepicker__year-option--selected' },
-	            '\u2713'
-	          ) : '',
 	          year
 	        );
 	      });
@@ -56333,15 +56328,10 @@
 	      return _this.props.monthNames.map(function (month, i) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'react-datepicker__month-option',
+	          { className: 'react-datepicker__month-option ' + (_this.props.month === i ? "react-datepicker__month-option--selected" : ''),
 	            key: month,
 	            ref: month,
 	            onClick: _this.onChange.bind(_this, i) },
-	          _this.props.month === i ? _react2.default.createElement(
-	            'span',
-	            { className: 'react-datepicker__month-option--selected' },
-	            '\u2713'
-	          ) : '',
 	          month
 	        );
 	      });
@@ -57232,10 +57222,9 @@
 	        !hidePopper && _react2.default.createElement(
 	          _reactPopper.Popper,
 	          {
-	            style: { zIndex: 1 },
+	            className: 'react-datepicker-popper',
 	            modifiers: popperModifiers,
-	            placement: popperPlacement,
-	            className: 'popper' },
+	            placement: popperPlacement },
 	          popperComponent
 	        )
 	      );
@@ -57568,11 +57557,7 @@
 	            top = _this$state$data$offs.top,
 	            left = _this$state$data$offs.left;
 
-	        if (!left) {
-	          return { top: +top };
-	        } else {
-	          return { left: +left };
-	        }
+	        return { top: +top, left: +left };
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -57599,7 +57584,7 @@
 	        this._updatePopper();
 	      }
 
-	      if (lastProps.children !== this.props.children) {
+	      if (this._popper && lastProps.children !== this.props.children) {
 	        this._popper.scheduleUpdate();
 	      }
 	    }
